@@ -1,0 +1,68 @@
+body {
+  background-color: azure;
+  margin: 0;
+}
+
+.roundable {
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.main-header {
+  padding: 10px;
+  background-color: grey;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.main-header button {
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.6s;
+}
+
+.main-header button:hover {
+  background-color: azure;
+}
+
+.main-aside {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.main-aside section {
+  width: 350px;
+  height: 350px;
+  padding: 10px;
+  background-color: grey;
+  margin-bottom: 10px;
+  background: url("holland.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+
+.main-aside section p {
+  font-size: 20px;
+  color: white;
+}
+
+.main-footer {
+  padding: 10px;
+  background-color: grey;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
