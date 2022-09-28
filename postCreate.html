@@ -12,8 +12,20 @@
       <a href=""><button>Главная</button></a>
       <a href=""><button>О сайте</button></a>
     </header>
-    <aside class="main-aside"></aside>
+    <aside class="main-aside">
+      <div class="roundable post-form">
+      <form>
+        <div>
+          <label>Название</label><input name="title"></input>
+        </div>
+        <div>
+          <label>Описание</label><input name="description"></input>
+        </div>
+        <button class="create-button" type="submit">Создать блог</button>
+      </form>
+    </div>
+    </aside>
     <footer class="main-footer">Полезная информация</footer>
   </body>
-  <script src="index.js" type="text/javascript"></script>
+  <script src="postCreate.js" type="text/javascript"></script>
 </html>

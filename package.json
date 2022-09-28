@@ -1,0 +1,24 @@
+{
+  "name": "fullstack-2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-server": "json-server --watch db.json --port 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ivan179/fullstack-2022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ivan179/fullstack-2022/issues"
+  },
+  "homepage": "https://github.com/Ivan179/fullstack-2022#readme",
+  "dependencies": {
+    "jquery": "^3.6.1",
+    "json-server": "^0.17.0"
+  }
+}

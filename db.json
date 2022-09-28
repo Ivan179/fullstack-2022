@@ -1,0 +1,49 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Блог 1",
+      "description": "Я люблю Голландию"
+    },
+    {
+      "id": 2,
+      "title": "Блог 2",
+      "description": "Я люблю Голландию"
+    },
+    {
+      "id": 3,
+      "title": "Блог 3",
+      "description": "Я люблю Голландию"
+    },
+    {
+      "id": 4,
+      "title": "Блог 4",
+      "description": "Я люблю Голландию"
+    },
+    {
+      "id": 5
+    },
+    {
+      "title": "Первый пост",
+      "description": "Описание первого поста",
+      "id": 6
+    }
+  ]
+}

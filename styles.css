@@ -3,6 +3,10 @@ body {
   margin: 0;
 }
 
+#id {
+  background-color: azure;
+}
+
 .roundable {
   border: 1px solid black;
   border-radius: 8px;
@@ -65,4 +69,11 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
+}
+
+.post-form {
+  background-color: grey;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
