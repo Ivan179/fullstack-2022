@@ -66,7 +66,7 @@ body {
 
 .main-aside section p {
   font-size: 20px;
-  color: white;
+  color: gray;
 }
 
 .main-footer {
@@ -90,4 +90,15 @@ body {
 .blog-link {
   text-decoration: none;
   color: white;
+}
+
+.error {
+  color: red;
+}
+
+.show-all {
+  display: flex;
+  align-items: center;
+  margin-bottom: 80px;
+  justify-content: center;
 }
