@@ -1,11 +1,14 @@
+import { useDispatch } from 'react-redux';
 import './Modal.css';
 import close from '../../images/close.jpeg';
+import { closeModal } from '../../slices/modal';
 
 export function Modal(props) {
-  const { isModalOpen, onClose, children } = props;
+  const dispatch = useDispatch();
+  const { children } = props;
 
   const handleOverlayClick = () => {
-    onClose();
+    dispatch(closeModal());
   };
 
   const handleModalClick = (event) => {
@@ -13,13 +16,10 @@ export function Modal(props) {
     event.preventDefault();
   };
 
-  if (!isModalOpen) {
-    return null;
-  }
   return (
     <div className='modal-container' onClick={handleOverlayClick}>
       <div className='modal' onClick={handleModalClick}>
-        <img className='modal-close' src={close} onClick={onClose} />
+        <img className='modal-close' src={close} onClick={handleOverlayClick} />
         {children}
       </div>
     </div>

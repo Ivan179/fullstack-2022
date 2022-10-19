@@ -1,18 +1,24 @@
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { openModal } from '../slices/modal';
 
 export function BlogItem(props) {
-  const { id, title, description, onEditClick, onDeleteClick } = props;
+  const dispatch = useDispatch();
+  const { id } = props;
+  const blog = useSelector((state) => state.blogs.blogsObj[id]);
+
+  const { title, description } = blog;
 
   const handleEditClick = (event) => {
     event.stopPropagation();
     event.preventDefault();
-    onEditClick();
+    dispatch(openModal({ data: id, name: 'edit' }));
   };
 
   const handleDeleteClick = (event) => {
     event.stopPropagation();
     event.preventDefault();
-    onDeleteClick();
+    dispatch(openModal({ data: id, name: 'delete' }));
   };
 
   return (

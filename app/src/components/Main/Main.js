@@ -1,56 +1,22 @@
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { BlogItem } from '../BlogItem';
-import { Modal } from '../Modal/Modal';
-import { EditBlog } from '../EditBlog/EditBlog';
-import { DeleteBlog } from '../DeleteBlog/DeleteBlog';
+import { increasePage } from '../../slices/blogs';
 import { useBlogs } from './useBlogs';
 
 export function Main() {
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [editBlog, setEditBlog] = useState(null);
+  const dispatch = useDispatch();
+  const blogs = useSelector((state) => state.blogs.blogIds);
 
-  const { setPage, blogs } = useBlogs();
+  useBlogs();
 
   return (
     <>
       <aside className='main-aside'>
-        <Modal
-          isModalOpen={isEditModalOpen}
-          onClose={() => setIsEditModalOpen(false)}
-        >
-          {editBlog && (
-            <EditBlog
-              blogId={editBlog.id}
-              defaultTitle={editBlog.title}
-              defaultDescription={editBlog.description}
-              onClose={() => setIsEditModalOpen(false)}
-            />
-          )}
-        </Modal>
-        <Modal
-          isModalOpen={isDeleteModalOpen}
-          onClose={() => setIsDeleteModalOpen(false)}
-        >
-          <DeleteBlog />
-        </Modal>
         {blogs.map((blog) => (
-          <BlogItem
-            key={blog.id}
-            id={blog.id}
-            title={blog.title}
-            description={blog.description}
-            onEditClick={() => {
-              setIsEditModalOpen(true);
-              setEditBlog(blog);
-            }}
-            onDeleteClick={() => {
-              setIsDeleteModalOpen(true);
-            }}
-          />
+          <BlogItem key={blog} id={blog} />
         ))}
       </aside>
-      <div className='show-all' onClick={() => setPage((page) => page + 1)}>
+      <div className='show-all' onClick={() => dispatch(increasePage())}>
         <button className='roundable'>Показать все</button>
       </div>
     </>

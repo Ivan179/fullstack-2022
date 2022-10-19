@@ -1,18 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ajaxService } from '../../services/ajaxService';
+import { setBlogsMore, setBlogs } from '../../slices/blogs';
 
 export function useBlogs() {
-  const [page, setPage] = useState(1);
-  const [blogs, setBlogs] = useState([]);
+  const dispatch = useDispatch();
+  const page = useSelector((state) => state.blogs.page);
 
   useEffect(() => {
     ajaxService(`/blogs?page=${page}`).then((data) => {
-      setBlogs((oldBlogs) => [...oldBlogs, ...data]);
+      if (page === 1) {
+        dispatch(setBlogs(data));
+      } else {
+        dispatch(setBlogsMore(data));
+      }
     });
   }, [page]);
-
-  return {
-    setPage,
-    blogs,
-  };
 }
