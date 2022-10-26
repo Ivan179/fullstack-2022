@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <link href="{% static 'index.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <header>Это шапка!</header>
+    {% block content %} {% endblock %}
+  </body>
+</html>

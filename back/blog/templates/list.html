@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {%block content%}
+<div>
+  <div>Список блогов</div>
+  {% for blog in blogs %} {% if blog.id == 2 %}
+  <div style="color: red">{{blog.id}}</div>
+  {% else %}
+  <div>{{blog.id}}</div>
+  {% endif %}
+
+  <div>{{blog.title}}</div>
+  <div>{{blog.description}}</div>
+  {% endfor %}
+</div>
+{%endblock%}
