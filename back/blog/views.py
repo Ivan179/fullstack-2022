@@ -1,6 +1,11 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
+from django.http.response import HttpResponseNotFound
+from django.urls import reverse
 from django.http import Http404
+from django.utils import timezone
+from django.views.generic import CreateView, UpdateView
 from .models import Blog
+from .forms import BlogForm
 
 def index(request):
   return render(request, 'index.html')
@@ -17,3 +22,47 @@ def list(request):
   blogs = Blog.objects.all()
 
   return render(request, 'list.html', { 'blogs': blogs })
+
+def create(request):
+  if request.method == 'POST':
+    form = BlogForm(request.POST)
+
+    if form.is_valid():
+      title = form.cleaned_data.get('title')
+      description = form.cleaned_data.get('description')
+      topic = form.cleaned_data.get('topic')
+      post = Blog.objects.create(title=title, description=description, topic=topic, user=request.user, date_creation=timezone.now())
+      post.save()
+
+      return HttpResponseRedirect('/blog/list')
+  else: 
+    form = BlogForm()
+  return render(request, 'create.html', { 'form': form })
+
+class BlogCreate(CreateView):
+  template_name = 'create.html'
+  model = Blog
+  context_object_name = 'form'
+  fields = ['title', 'description', 'topic', 'date_creation']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super(BlogCreate, self).form_valid(form)
+
+  def get_success_url(self):
+    return reverse('details', args=(self.object.id,))
+
+class BlogUpdate(UpdateView):
+  template_name = 'update.html'
+  model = Blog
+  context_object_name = 'form'
+  fields = ['title', 'description', 'topic', 'date_creation']
+  
+  def dispatch(self, request, pk) :
+    blog = Blog.objects.get(pk=pk)
+    if blog.user == request.user:
+        return super().dispatch(request)
+    return HttpResponseNotFound()
+
+  def get_success_url(self):
+    return reverse('details', args=(self.object.id,))

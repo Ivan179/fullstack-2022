@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {%block content%}
+<div>Редактирование блога</div>
+<form method="POST">
+  {% csrf_token %} {{form}}
+  <button type="submit">Редактировать блог</button>
+</form>
+{%endblock%}

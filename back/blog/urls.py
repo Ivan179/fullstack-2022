@@ -4,7 +4,9 @@ from . import views
 
 urlpatterns = [
   path('', views.index, name="index"),
-  path('<int:blog_id>/', views.detail),
-  path('list/', views.list),  
-  path('react/', views.react)
+  path('<int:pk>/update/', views.BlogUpdate.as_view(), name="blogsupdate"),
+  path('<int:blog_id>/', views.detail, name="details"),
+  path('list/', views.list, name="blogslist"),  
+  path('react/', views.react),
+  path('create/', views.BlogCreate.as_view(), name="blogscreate"),
 ]

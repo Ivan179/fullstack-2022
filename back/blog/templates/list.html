@@ -7,7 +7,7 @@
   <div>{{blog.id}}</div>
   {% endif %}
 
-  <div>{{blog.title}}</div>
+  <a href="{% url "details" blog.id %}">{{blog.title}}</a>
   <div>{{blog.description}}</div>
   {% endfor %}
 </div>

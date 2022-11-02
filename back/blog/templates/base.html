@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,7 +6,15 @@
     <link href="{% static 'index.css' %}" rel="stylesheet" />
   </head>
   <body>
-    <header>Это шапка!</header>
+    <header>
+      {% if user.is_authenticated %}
+      <a href={% url 'logout' %}><button >Выйти</button></a>
+      <a href={% url 'blogscreate' %}><button >Создать блог</button></a>
+      {% else %}
+      <a href={% url 'login' %}><button >Войти</button></a>
+      {% endif %}
+      <a href={% url 'blogslist' %}><button >Список блогов</button></a>
+    </header>
     {% block content %} {% endblock %}
   </body>
 </html>
