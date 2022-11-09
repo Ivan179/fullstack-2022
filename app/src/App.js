@@ -7,10 +7,12 @@ import { CreateBlog } from './components/CreateBlog';
 import { Info } from './components/Info';
 import { About } from './components/About';
 import { Login } from './components/Login';
-import { MyBlogs } from './components/MyBlogs';
+import { MyBlogs } from './components/MyBlogs/MyBlogs';
 import { Blog } from './components/Blog/Blog';
 import { Post } from './components/Post/Post';
 import { ModalContainer } from './components/ModalContainer/ModalContainer';
+import { Profile1 } from './components/Profile/Profile1';
+import { Profile2 } from './components/Profile/Profile2';
 import { store } from './store';
 import './App.css';
 
@@ -29,6 +31,8 @@ function App() {
           <Route path='/my-blogs' element={<MyBlogs />}></Route>
           <Route path='/blog/:id' element={<Blog />}></Route>
           <Route path='/blog/:id/post/:postId' element={<Post />}></Route>
+          <Route path='/profile1' element={<Profile1 />}></Route>
+          <Route path='/profile2' element={<Profile2 />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -1,6 +1,9 @@
 import { HeaderLink } from './HeaderLink';
+import { useLocation } from 'react-router-dom';
 
 export function Header() {
+  const currentLocation = useLocation();
+  console.log(currentLocation.pathname);
   return (
     <header className='main-header'>
       <HeaderLink to=''>Главная</HeaderLink>

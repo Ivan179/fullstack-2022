@@ -4,8 +4,11 @@ from django.urls import reverse
 from django.http import Http404
 from django.utils import timezone
 from django.views.generic import CreateView, UpdateView
+from rest_framework import viewsets, mixins, permissions
+from back.urls import router
 from .models import Blog
 from .forms import BlogForm
+from .serializers import BlogSerializer, BlogsSerializer
 
 def index(request):
   return render(request, 'index.html')
@@ -66,3 +69,24 @@ class BlogUpdate(UpdateView):
 
   def get_success_url(self):
     return reverse('details', args=(self.object.id,))
+
+class BlogViewSet(viewsets.ModelViewSet):
+  queryset = Blog.objects.all()
+  serializer_class = BlogSerializer
+
+  def get_serializer_class(self):
+    if 'pk' in self.kwargs:
+      return BlogSerializer
+    return BlogsSerializer
+
+class MyBlogsViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
+  queryset = Blog.objects.all()
+  serializer_class = BlogsSerializer
+  permission_classes = [permissions.IsAuthenticated]
+
+  def get_queryset(self):
+    return Blog.objects.filter(user=self.request.user)
+      
+
+router.register(r'blogs', BlogViewSet)
+router.register(r'myblogs', MyBlogsViewSet)
