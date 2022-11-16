@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.http.response import HttpResponseNotFound
 from django.urls import reverse
@@ -78,6 +79,15 @@ class BlogViewSet(viewsets.ModelViewSet):
     if 'pk' in self.kwargs:
       return BlogSerializer
     return BlogsSerializer
+
+  def perform_create(self, serializer):
+    serializer.validated_data['user'] = self.request.user
+    serializer.validated_data['date_creation'] = datetime.datetime.today()
+    return super().perform_create(serializer)
+
+  def perform_update(self, serializer):
+    serializer.validated_data['date_creation'] = datetime.date.today()
+    return super().perform_update(serializer)
 
 class MyBlogsViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
   queryset = Blog.objects.all()

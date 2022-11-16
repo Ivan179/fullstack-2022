@@ -15,11 +15,11 @@ export function EditBlog(props) {
       defaultTitle={defaultTitle}
       defaultDescription={defaultDescription}
       onSubmitForm={({ title, description }) => {
-        ajaxService(`/blogs/${blogId}`, {
+        ajaxService(`/blogs/${blogId}/`, {
           method: 'PUT',
           body: JSON.stringify({ title, description }),
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'Application/json',
           },
         }).then((data) => {
           updateBlog?.(data);

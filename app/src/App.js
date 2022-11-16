@@ -6,7 +6,7 @@ import { Main } from './components/Main/Main';
 import { CreateBlog } from './components/CreateBlog';
 import { Info } from './components/Info';
 import { About } from './components/About';
-import { Login } from './components/Login';
+import { Login } from './components/Login/Login';
 import { MyBlogs } from './components/MyBlogs/MyBlogs';
 import { Blog } from './components/Blog/Blog';
 import { Post } from './components/Post/Post';

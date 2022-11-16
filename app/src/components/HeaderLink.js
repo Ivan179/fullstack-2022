@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 
 export const HeaderLink = (props) => {
-  const { to, children } = props;
+  const { to, children, onClick } = props;
   const currentLocation = useLocation();
 
   function getClassName() {
@@ -12,9 +12,17 @@ export const HeaderLink = (props) => {
     return 'roundable';
   }
 
+  if (!to) {
+    <button onClick={onClick} className={getClassName()}>
+      {children}
+    </button>;
+  }
+
   return (
     <Link to={to}>
-      <button className={getClassName()}>{children}</button>
+      <button onClick={onClick} className={getClassName()}>
+        {children}
+      </button>
     </Link>
   );
 };

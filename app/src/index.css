@@ -106,3 +106,15 @@ body {
 .colored {
   background-color: brown;
 }
+
+.field {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  align-items: center;
+}
+
+.field input {
+  border-radius: 2px;
+  height: 20px;
+}

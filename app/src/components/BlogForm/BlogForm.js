@@ -5,10 +5,11 @@ export function BlogForm(props) {
   const [title, setTitle] = useState(defaultTitle);
   const [titleError, setTitleError] = useState('');
   const [description, setDescription] = useState(defaultDescription);
+  const [topic, setTopic] = useState('');
   const onSubmit = (event) => {
     event.preventDefault();
 
-    onSubmitForm({ title, description });
+    onSubmitForm({ title, description, topic });
   };
 
   const handleChangeTitle = (event) => {
@@ -24,14 +25,18 @@ export function BlogForm(props) {
     setDescription(event.target.value);
   };
 
+  const handleChangeTopic = (event) => {
+    setTopic(event.target.value);
+  };
+
   return (
     <form>
-      <div>
+      <div className='field'>
         <label>Название</label>
         <input name='title' value={title} onChange={handleChangeTitle}></input>
         <div className='error'>{titleError}</div>
       </div>
-      <div>
+      <div className='field'>
         <label>Описание</label>
         <input
           name='description'
@@ -39,9 +44,15 @@ export function BlogForm(props) {
           onChange={handleChangeDescription}
         ></input>
       </div>
-      <button className='create-button' type='submit' onClick={onSubmit}>
-        {submitTitle}
-      </button>
+      <div className='field'>
+        <label>Тема</label>
+        <input name='topic' value={topic} onChange={handleChangeTopic}></input>
+      </div>
+      <div>
+        <button className='submit-button' type='submit' onClick={onSubmit}>
+          {submitTitle}
+        </button>
+      </div>
     </form>
   );
 }

@@ -7,10 +7,10 @@ export function CreateBlog() {
       <div className='roundable post-form'>
         <BlogForm
           submitTitle='Создать блог'
-          onSubmitForm={({ title, description }) => {
-            ajaxService('/blogs', {
+          onSubmitForm={({ title, description, topic }) => {
+            ajaxService('/blogs/', {
               method: 'POST',
-              body: JSON.stringify({ title, description }),
+              body: JSON.stringify({ title, description, topic }),
               headers: {
                 'Content-Type': 'application/json',
               },
