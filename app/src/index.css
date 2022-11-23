@@ -118,3 +118,14 @@ body {
   border-radius: 2px;
   height: 20px;
 }
+
+.blog-item {
+  position: relative;
+}
+
+.date-creation {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+}

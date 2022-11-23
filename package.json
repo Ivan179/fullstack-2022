@@ -20,6 +20,7 @@
   "dependencies": {
     "create-react-app": "^5.0.1",
     "jquery": "^3.6.1",
-    "json-server": "^0.17.0"
+    "json-server": "^0.17.0",
+    "moment": "^2.29.4"
   }
 }

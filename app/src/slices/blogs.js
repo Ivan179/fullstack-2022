@@ -39,6 +39,16 @@ const blogsSlice = createSlice({
       state.posts = { ...state.posts, ...entities.posts };
       state.comments = { ...state.comments, ...entities.comments };
     },
+    updateBlog: (state, action) => {
+      const { entities, result } = normalize(action.payload, blogSchema);
+
+      state.blogsObj = { ...state.blogsObj, [result]: entities.blogs[result] };
+    },
+    deleteBlog: (state, action) => {
+      const blogId = action.payload;
+
+      state.blogIds.splice(state.blogIds.indexOf(blogId), 1);
+    },
     setBlogsMore: (state, action) => {
       const { entities, result } = normalize(action.payload, [blogSchema]);
 
@@ -75,4 +85,6 @@ export const {
   increasePage,
   setMyBlogs,
   setMyBlogsMore,
+  updateBlog,
+  deleteBlog,
 } = blogsSlice.actions;

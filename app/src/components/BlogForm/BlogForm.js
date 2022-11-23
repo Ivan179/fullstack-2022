@@ -1,11 +1,17 @@
 import { useState } from 'react';
 
 export function BlogForm(props) {
-  const { onSubmitForm, submitTitle, defaultTitle, defaultDescription } = props;
+  const {
+    onSubmitForm,
+    submitTitle,
+    defaultTitle,
+    defaultDescription,
+    defaultTopic,
+  } = props;
   const [title, setTitle] = useState(defaultTitle);
   const [titleError, setTitleError] = useState('');
   const [description, setDescription] = useState(defaultDescription);
-  const [topic, setTopic] = useState('');
+  const [topic, setTopic] = useState(defaultTopic);
   const onSubmit = (event) => {
     event.preventDefault();
 

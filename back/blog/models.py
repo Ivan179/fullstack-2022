@@ -8,5 +8,8 @@ class Blog(models.Model):
   topic = models.CharField(max_length=100)
   date_creation = models.DateTimeField()
 
+  def get_timestamp(self):
+    return self.date_creation.timestamp()
+
   def __str__(self) -> str:
     return self.title + self.description

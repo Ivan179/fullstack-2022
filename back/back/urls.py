@@ -19,7 +19,7 @@ from django.conf import settings
 from rest_framework import routers
 from django.conf.urls.static import static
 from post.views import PostViewSet
-from user.views import UserViewSet
+from user.views import UserViewSet, CurrentUser
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -35,5 +35,6 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/', include(router.urls)),
+    path('api/user/current', CurrentUser.as_view()),
     path('user/', include('user.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

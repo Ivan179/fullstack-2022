@@ -5,11 +5,21 @@ from django.urls import reverse
 from django.http import Http404
 from django.utils import timezone
 from django.views.generic import CreateView, UpdateView
-from rest_framework import viewsets, mixins, permissions
+from rest_framework import viewsets, mixins, permissions, response, permissions
 from back.urls import router
 from .models import Blog
 from .forms import BlogForm
 from .serializers import BlogSerializer, BlogsSerializer
+
+class IsOwnerPermission(permissions.BasePermission):
+    message = 'Only owner can edit blog'
+
+    def has_object_permission(self, request, view, obj): 
+      if request.user.id == obj.user.id:
+        return True
+      else:
+        return False
+          
 
 def index(request):
   return render(request, 'index.html')
@@ -74,6 +84,7 @@ class BlogUpdate(UpdateView):
 class BlogViewSet(viewsets.ModelViewSet):
   queryset = Blog.objects.all()
   serializer_class = BlogSerializer
+  permission_classes = [IsOwnerPermission]
 
   def get_serializer_class(self):
     if 'pk' in self.kwargs:
@@ -86,7 +97,6 @@ class BlogViewSet(viewsets.ModelViewSet):
     return super().perform_create(serializer)
 
   def perform_update(self, serializer):
-    serializer.validated_data['date_creation'] = datetime.date.today()
     return super().perform_update(serializer)
 
 class MyBlogsViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):

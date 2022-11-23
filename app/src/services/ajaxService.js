@@ -29,6 +29,10 @@ export function ajaxService(url, params = {}) {
 
         fetch('http://localhost:8000/api' + url, newParams).then((data) => {
           if (data.ok) {
+            if (params.method === 'DELETE') {
+              return;
+            }
+
             return data.json();
           }
 
@@ -37,6 +41,10 @@ export function ajaxService(url, params = {}) {
       });
     }
     if (data.ok) {
+      if (params.method === 'DELETE') {
+        return;
+      }
+
       return data.json();
     }
 
