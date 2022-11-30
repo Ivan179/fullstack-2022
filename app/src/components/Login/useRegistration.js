@@ -32,7 +32,7 @@ export function useRegistration({
       headers: {
         'Content-Type': 'application/json',
       },
-    });
+    }).then(() => handleLogin());
     setTimeout(() => {
       handleLogin();
     }, 1000);

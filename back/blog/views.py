@@ -84,7 +84,7 @@ class BlogUpdate(UpdateView):
 class BlogViewSet(viewsets.ModelViewSet):
   queryset = Blog.objects.all()
   serializer_class = BlogSerializer
-  permission_classes = [IsOwnerPermission]
+  permission_classes = []
 
   def get_serializer_class(self):
     if 'pk' in self.kwargs:
