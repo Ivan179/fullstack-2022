@@ -11,7 +11,7 @@ export function PostCreate({ blogId }) {
     formData.append('description', description);
     formData.append('image', fileRef.current.files[0]);
 
-    fetch(`http://localhost:8000/api/posts/?blog=${blogId}`, {
+    fetch(`${process.env.REACT_APP_API}/api/posts/?blog=${blogId}`, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('ACCESS')}`,
       },

@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-swzlkq7ju8ff+pu=*d9e%y8uq-jlr$9xfyoth-6$vwsv6brhyi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'comment',
     'crispy_forms',
     'user',
-    'crispy_bootstrap5',
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt',
@@ -86,18 +85,18 @@ WSGI_APPLICATION = 'back.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
+#     'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': config['db']['NAME'],
+#        'USER': config['db']['USER'],
+#        'PASSWORD': config['db']['PASSWORD'],
+#        'HOST': 'localhost',
+#        'PORT': '3306',
+#    },
     'default': {
-       'ENGINE': 'django.db.backends.mysql',
-       'NAME': config['db']['NAME'],
-       'USER': config['db']['USER'],
-       'PASSWORD': config['db']['PASSWORD'],
-       'HOST': 'localhost',
-       'PORT': '3306',
-   },
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -163,4 +162,4 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000',]
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://158.160.50.169']
