@@ -13,6 +13,7 @@ import { Post } from './components/Post/Post';
 import { ModalContainer } from './components/ModalContainer/ModalContainer';
 import { Profile1 } from './components/Profile/Profile1';
 import { Profile2 } from './components/Profile/Profile2';
+import { isLogin } from './utils/isLogin';
 import { store } from './store';
 import './App.css';
 
@@ -28,7 +29,10 @@ function App() {
           <Route path='/info' element={<Info />}></Route>
           <Route path='/about' element={<About />}></Route>
           <Route path='/login' element={<Login />}></Route>
-          <Route path='/my-blogs' element={<MyBlogs />}></Route>
+          <Route
+            path='/my-blogs'
+            element={isLogin() ? <MyBlogs /> : <Login />}
+          ></Route>
           <Route path='/blog/:id' element={<Blog />}></Route>
           <Route path='/blog/:id/post/:postId' element={<Post />}></Route>
           <Route path='/profile1' element={<Profile1 />}></Route>
